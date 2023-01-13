@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
   <meta name="csrf-token" content="{{ csrf_token() }}" />
-  <title>{{ 'OTIS - ' . $title }}</title>
+  <title>{{ 'Penjualan - ' . $title }}</title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="{{ asset('assets/modules/bootstrap/css/bootstrap.min.css') }}">
@@ -49,7 +49,7 @@
   </style>
   
 <!-- Start GA -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
+{{-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script> --}}
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -82,9 +82,6 @@
             <img alt="image" src="{{ asset('assets/img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
             <div class="d-sm-none d-lg-inline-block">{{ 'Hi, ' . auth()->user()->name}}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
-              <button class="dropdown-item has-icon text-danger" onclick="showModalJs('/user/profile')"  data-toggle="modal" data-target="#modal-lg">
-                <i class="fas fa-user"></i> Profile
-              </button>
 
               <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger" onclick="event.preventDefault();
               document.getElementById('logout-form').submit();">
@@ -114,30 +111,8 @@
           </div>
         </section>
       </div>
-      <!-- Modal Small -->
-      <div class="modal fade" id="modal-sm">
-        <div class="modal-dialog modal-sm">
-          <div class="modal-content">
 
-          </div>
-        </div>
-      </div>
-
-      <!-- Modal Large Lg-->
-      <div class="modal fade" id="modal-lg">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-          </div>
-        </div>
-      </div>
-      <!-- Modal Large XL -->
-      <div class="modal fade" id="modal-xl">
-        <div class="modal-dialog modal-xl">
-          <div class="modal-content">
-
-          </div>
-        </div>
-      </div>
+  
       <footer class="main-footer">
         <div class="footer-left">
           Copyright &copy; 2018
@@ -160,7 +135,6 @@
   <script src="{{ asset('assets/modules/nicescroll/jquery.nicescroll.min.js') }}"></script>
   <script src="{{ asset('assets/modules/moment.min.js') }}"></script>
   <script src="{{ asset('assets/js/stisla.js') }}"></script>
-  <script src="{{ asset('assets/js/modal.js') }}"></script>
   
   <!-- JS Libraries -->
   @yield('js-libraries')

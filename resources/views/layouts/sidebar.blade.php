@@ -11,7 +11,7 @@
           <ul class="dropdown-menu">
 
             <li class="{{ request()->is("company") || request()->is("company/*") ? "active" : "" }}"><a class="nav-link"
-                >Company</a></li>
+                href="{{  route("barang.index") }}">Barang</a></li>
           
             <li class="{{ request()->is("material") || request()->is("material/*") ? "active" : "" }}"><a class="nav-link"
                 >Material</a></li>
