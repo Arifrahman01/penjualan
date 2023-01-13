@@ -146,7 +146,7 @@ of Simple CSS Waves-->
                 <br>
                 <div class="form-group">
                     <label for="">
-                        <h4>Welcome toStisla Penjualan</h4>
+                        <h4>Welcome toStisla Demo Program</h4>
                     </label>
                 </div>
                     <div class="form-group">
