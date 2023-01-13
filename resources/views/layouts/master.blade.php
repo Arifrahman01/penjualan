@@ -135,6 +135,7 @@
   <script src="{{ asset('assets/modules/nicescroll/jquery.nicescroll.min.js') }}"></script>
   <script src="{{ asset('assets/modules/moment.min.js') }}"></script>
   <script src="{{ asset('assets/js/stisla.js') }}"></script>
+  <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
   
   <!-- JS Libraries -->
   @yield('js-libraries')

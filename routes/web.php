@@ -25,5 +25,12 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::controller(BarangController::class)->group(function () {
         Route::get('/barang', 'index')->name('barang.index');
+        Route::get('/barang/create', 'create')->name('barang.create');
+        Route::get('/barang/{id}/edit', 'edit')->name('barang.edit');
+        Route::get('/barang/{id}/delete', 'destroy')->name('barang.destroy');
+        
+        Route::post('/barang', 'store')->name('barang.store');
+        Route::put('/barang/{id}/update', 'update')->name('barang.update');
     });
+
 });

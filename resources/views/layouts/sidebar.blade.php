@@ -1,16 +1,12 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
       <ul class="sidebar-menu">
-        <li class="dropdown {{ request()->is("company") || request()->is("company/*") ||  
-          request()->is("material") || request()->is("material/*") || request()->is("uom/*")  ||  
-          request()->is("uom")  ||request()->is("plant/*")  ||  request()->is("plant") || request()->is("vendor/*")  ||  
-          request()->is("vendors") || request()->is("masterstatus/*")  ||  request()->is("masterstatus") || 
-          request()->is("currency/*")  ||  request()->is("currency") 
+        <li class="dropdown {{ request()->is("barang") || request()->is("barang/*")
           ? "active" : "" }}">
           <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-database"></i><span>Master</span></a>
           <ul class="dropdown-menu">
 
-            <li class="{{ request()->is("company") || request()->is("company/*") ? "active" : "" }}"><a class="nav-link"
+            <li class="{{ request()->is("barang") || request()->is("barang/*") ? "active" : "" }}"><a class="nav-link"
                 href="{{  route("barang.index") }}">Barang</a></li>
           
             <li class="{{ request()->is("material") || request()->is("material/*") ? "active" : "" }}"><a class="nav-link"
