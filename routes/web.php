@@ -13,10 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('login/index');
-});
+Auth::routes();
 
-Route::get('/login', function () {
-    return redirect('/login');
-});
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
