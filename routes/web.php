@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,9 +29,17 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/barang/create', 'create')->name('barang.create');
         Route::get('/barang/{id}/edit', 'edit')->name('barang.edit');
         Route::get('/barang/{id}/delete', 'destroy')->name('barang.destroy');
-        
         Route::post('/barang', 'store')->name('barang.store');
         Route::put('/barang/{id}/update', 'update')->name('barang.update');
+    });
+
+    Route::controller(SupplierController::class)->group(function () {
+        Route::get('/supplier', 'index')->name('supplier.index');
+        Route::get('/supplier/create', 'create')->name('supplier.create');
+        Route::get('/supplier/{id}/edit', 'edit')->name('supplier.edit');
+        Route::get('/supplier/{id}/delete', 'destroy')->name('supplier.destroy');
+        Route::post('/supplier', 'store')->name('supplier.store');
+        Route::put('/supplier/{id}/update', 'update')->name('supplier.update');
     });
 
 });

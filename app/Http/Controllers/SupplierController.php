@@ -2,16 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Barang;
 use App\Models\Supplier;
-
-
+use Dotenv\Exception\ValidationException;
 use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\DB;
 
-
-class BarangController extends Controller
+class SupplierController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,8 +17,8 @@ class BarangController extends Controller
     public function index()
     {
         $numberPage = 10;
-        $list = Barang::with('supplier')->simplePaginate($numberPage)->withQueryString();
-        return view('barang.index', compact('numberPage','list'));
+        $list = Supplier::paginate($numberPage)->withQueryString();
+        return view('supplier.index', compact('numberPage','list'));
     }
 
     /**
@@ -32,14 +28,12 @@ class BarangController extends Controller
      */
     public function create()
     {
-        $title = 'Create Barang';
-        $action = route('barang.store');
+        $title = 'Create Supplier';
+        $action = route('supplier.store');
         $method = 'POST';
 
-        $supplier = Supplier::get();
-
-        $data = compact('title', 'action', 'method' ,  'supplier');
-        return view('barang.form', $data);
+        $data = compact('title', 'action', 'method');
+        return view('supplier.form', $data);
     }
 
     /**
@@ -53,26 +47,23 @@ class BarangController extends Controller
         DB::beginTransaction();
         try {
             $rules = [
-                'supplier_id'   => 'required',
                 'code'          => 'required',
                 'description'   => 'required'
             ];
             $customMessages = [
-                'supplier_id'    => 'required',
                 'code'          => 'required',
                 'description'   => 'required'
             ];
 
             request()->validate($rules, $customMessages);
 
-            Barang::create([
-                'supplier_id'   => request('supplier_id'),
+            Supplier::create([
                 'code'          => request('code'),
                 'description'   => request('description'),
             ]);
             DB::commit();
             alert()->success('Success', 'Data has been saved');
-            return redirect()->route('barang.index');
+            return redirect()->route('supplier.index');
         } catch (ValidationException $e) {
             DB::rollBack();
             alert()->error('Error', $e->validator->errors()->first());
@@ -104,21 +95,19 @@ class BarangController extends Controller
      */
     public function edit($id)
     {
-        $list = Barang::find($id);
+        $list = Supplier::find($id);
         $data = [
-            'supplier_id'   => $list->supplier_id,
             'code'          => $list->code,
             'description'   => $list->description
         ];
         session()->flashInput(array_merge($data, old()));
 
-        $title = 'Edit Barang';
-        $action = route('barang.update', ['id' => $id]);
+        $title = 'Edit Supplier';
+        $action = route('supplier.update', ['id' => $id]);
         
         $method = 'PUT';
-        $supplier = Supplier::get();
-        $data = compact('title', 'action', 'method', 'supplier', 'list');
-        return view('barang.form', $data);
+        $data = compact('title', 'action', 'method','list');
+        return view('supplier.form', $data);
     }
 
     /**
@@ -133,26 +122,23 @@ class BarangController extends Controller
         DB::beginTransaction();
         try {
             $rules = [
-                'supplier_id'   => 'required',
                 'code'          => 'required',
                 'description'   => 'required'
             ];
             $customMessages = [
-                'supplier_id'    => 'required',
                 'code'          => 'required',
                 'description'   => 'required'
             ];
             request()->validate($rules, $customMessages);
 
-            $list = Barang::find($id);
+            $list = Supplier::find($id);
             $list->update([
-                'supplier_id'   => request('supplier_id'),
                 'code'          => request('code'),
                 'description'   => request('description'),
             ]);
             DB::commit();
             alert()->success('Success', 'Data has been update');
-            return redirect()->route('barang.index');
+            return redirect()->route('supplier.index');
         } catch (ValidationException $e) {
             DB::rollBack();
             alert()->error('Error', $e->validator->errors()->first());
@@ -175,10 +161,10 @@ class BarangController extends Controller
     {
         DB::beginTransaction();
         try {
-            Barang::find($id)->delete();
+            Supplier::find($id)->delete();
             DB::commit();
             alert()->success('Success', 'Data has been deleted');
-            return redirect()->route('barang.index');
+            return redirect()->route('supplier.index');
         } catch (\Exception $e) {
             DB::rollBack();
             alert()->error('Error', 'Data not deleted');
