@@ -2,7 +2,7 @@
 @php
 $page = Request::get('page') ? Request::get('page') : 1;
 $no = ($page-1) * $numberPage + 1;
-$search = Request::get('c');
+$search = Request::get('s');
 @endphp
 @section('content')
 <div class="row">
@@ -18,7 +18,7 @@ $search = Request::get('c');
 
             <div class="col-md-5">
               <label for="">Searching</label>
-              <input type="text" name="c" id="c" class="form-control form-control-sm" placeholder="Search : Code, Description" value="{{ $search }}">
+              <input type="text" name="s" id="s" class="form-control form-control-sm" placeholder="Search : Code, Description" value="{{ $search }}">
             </div>
             <div class="col-md-7 text-right">
               <br>

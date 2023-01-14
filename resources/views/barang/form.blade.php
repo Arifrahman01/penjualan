@@ -17,7 +17,7 @@
                                 <label for="">Supplier*</label>
                                 <select class="form-control form-control-sm @error('supplier_id') 'is-invalid' @enderror"
                                     size="1" id="supplier_id" name="supplier_id"  required>
-                                    <option value="">-Pilih Company-</option>
+                                    <option value="">-Pilih Supplier-</option>
                                     @foreach ($supplier as $val)
                                         <option value="{{ $val->id }}"  {{ selected( old('supplier_id'), $val->id) }}>
                                             {{ '[' . $val->code . '] - ' . $val->description }}

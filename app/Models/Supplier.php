@@ -14,4 +14,12 @@ class Supplier extends Model
 
     protected $guarded = ['id', 'created_at', 'updated_at', 'deleted_at'];
 
+    public function scopeSearch($query,array $search)
+    {  
+        $query->when($search['s'] ?? false,fn($query,$search) => 
+            $query->where('code',  'like', '%'.$search.'%')
+            ->orWhere('description','like', '%'.$search .'%')
+        );
+    }
+
 }

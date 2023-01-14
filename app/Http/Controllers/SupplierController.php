@@ -17,7 +17,7 @@ class SupplierController extends Controller
     public function index()
     {
         $numberPage = 10;
-        $list = Supplier::paginate($numberPage)->withQueryString();
+        $list = Supplier::search(request(['s']))->paginate($numberPage)->withQueryString();
         return view('supplier.index', compact('numberPage','list'));
     }
 

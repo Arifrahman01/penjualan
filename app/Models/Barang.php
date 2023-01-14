@@ -17,4 +17,15 @@ class Barang extends Model
     public function supplier() {
         return $this->belongsTo(Supplier::class);
     }
+    
+    public function scopeSearch($query,array $search)
+    {  
+        $query->when($search['s'] ?? false,fn($query,$search) => 
+            $query->where('code',  'like', '%'.$search.'%')
+            ->orWhere('description','like', '%'.$search .'%')
+        );
+        $query->when($search['a'] ?? false,fn($query,$search) => 
+            $query->where('supplier_id',  '=', $search)
+        );
+    }
 }

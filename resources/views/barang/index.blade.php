@@ -2,7 +2,9 @@
 @php
 $page = Request::get('page') ? Request::get('page') : 1;
 $no = ($page-1) * $numberPage + 1;
-$search = Request::get('c');
+$search = Request::get('s');
+$supp   = Request::get('a');
+
 @endphp
 @section('content')
 <div class="row">
@@ -15,12 +17,23 @@ $search = Request::get('c');
         <form action="">
           <input type="hidden" name="page" id="page" value="{{ $page }}">
           <div class="row">
-
-            <div class="col-md-5">
+            <div class="form-group col-md-3 col-lg-2">
+              <label for="">Supplier</label>
+              <select class="form-control form-control-sm"
+                  size="1" id="a" name="a" >
+                  <option value="">-Pilih Supplier-</option>
+                  @foreach ($supplier as $val)
+                      <option value="{{ $val->id }}"  {{ selected( $supp, $val->id) }}>
+                          {{ '[' . $val->code . '] - ' . $val->description }}
+                      </option>
+                  @endforeach
+              </select>
+          </div>
+            <div class="col-md-3">
               <label for="">Searching</label>
-              <input type="text" name="c" id="c" class="form-control form-control-sm" placeholder="Search : Code, Description" value="{{ $search }}">
+              <input type="text" name="s" id="s" class="form-control form-control-sm" placeholder="Search : Code, Description" value="{{ $search }}">
             </div>
-            <div class="col-md-7 text-right">
+            <div class="col-md-6 text-right">
               <br>
               <button onclick="filterUrl()" class="text-right btn btn-primary"><i class="fa fa-search"> Filter</i></button>
             </div>
@@ -68,11 +81,13 @@ $search = Request::get('c');
             </tbody>
           </table>
         </div>
+        <span>{{ number_format((($page-1) * $numberPage + 1),0). ' - ' . number_format(($no-1),0) .' Of Over '.number_format($list->total(),0).' Result' }} </span>
       </div>
 
+     
       <div class="card-footer">
-        {{ $list->links() }}
-      </div>
+        {!! $list->links() !!}
+    </div>
       </div>
     </div>
   </div>

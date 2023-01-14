@@ -21,8 +21,10 @@ class BarangController extends Controller
     public function index()
     {
         $numberPage = 10;
-        $list = Barang::with('supplier')->simplePaginate($numberPage)->withQueryString();
-        return view('barang.index', compact('numberPage','list'));
+        $supplier = Supplier::get();
+        $list = Barang::with('supplier')
+        ->search(request(['s','a']))->paginate($numberPage)->withQueryString();
+        return view('barang.index', compact('numberPage','list','supplier'));
     }
 
     /**
