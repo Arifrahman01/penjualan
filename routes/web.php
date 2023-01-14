@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\TransaksiController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +25,16 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+    Route::controller(TransaksiController::class)->group(function () {
+        Route::get('/transaksi', 'index')->name('transaksi.index');
+        Route::get('/transaksi/create', 'create')->name('transaksi.create');
+        Route::get('/transaksi/{id}/edit', 'edit')->name('transaksi.edit');
+        Route::get('/transaksi/{id}/delete', 'destroy')->name('transaksi.destroy');
+        Route::post('/transaksi', 'store')->name('transaksi.store');
+        Route::put('/transaksi/{id}/update', 'update')->name('transaksi.update');
+    });
 
     Route::controller(BarangController::class)->group(function () {
         Route::get('/barang', 'index')->name('barang.index');
