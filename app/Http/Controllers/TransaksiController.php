@@ -19,7 +19,7 @@ class TransaksiController extends Controller
     {
         $numberPage = 10;
         $barang = Barang::get();
-        $list = Transaksi::with(['barang.supplier'])->paginate($numberPage)->withQueryString();
+        $list = Transaksi::paginate($numberPage)->withQueryString();
         return view('transaksi.index', compact('numberPage','list','barang'));
     }
 

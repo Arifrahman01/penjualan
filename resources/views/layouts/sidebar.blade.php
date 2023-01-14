@@ -18,7 +18,10 @@
               href="{{  route("supplier.index") }}">Supplier</a></li>
           </ul>
         </li>
-        
+      </ul>
+      <ul class="sidebar-menu">
+        <li class="{{ request()->is("report") || request()->is("report/*") ? "active" : "" }}"><a class="nav-link"
+          href="{{ route("report.index") }}"><i class="fas fa-chart-line"></i> <span>Report</span> </a></li>
       </ul>
     </aside>
   </div>

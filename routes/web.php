@@ -3,6 +3,7 @@
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\ReportController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -53,5 +54,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/supplier', 'store')->name('supplier.store');
         Route::put('/supplier/{id}/update', 'update')->name('supplier.update');
     });
-
+    Route::controller(ReportController::class)->group(function () {
+        Route::get('/report', 'index')->name('report.index');
+    });
 });
