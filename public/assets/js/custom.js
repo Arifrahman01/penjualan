@@ -25,12 +25,6 @@ function deleteConfirmation(ev) {
     }
   })
 }
-$('.datefilter').daterangepicker({
-  autoUpdateInput: false,
-  locale: {
-    cancelLabel: 'Clear'
-  }
-});
 
 // $('.datefilter').on('apply.daterangepicker', function (ev, picker) {
 //   $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
@@ -39,21 +33,6 @@ $('.datefilter').daterangepicker({
 //   $(this).val('');
 // });
 
-$('.datefilter').daterangepicker({
-  autoUpdateInput: false,
-  locale: {
-      cancelLabel: 'Clear',
-      format: 'YYYY-MM-DD'
-  }
-});
-
-$('.datefilter').on('apply.daterangepicker', function(ev, picker) {
-  $(this).val(picker.startDate.format('YYYY-MM-DD') + ' - ' + picker.endDate.format('YYYY-MM-DD'));
-});
-
-$('.datefilter').on('cancel.daterangepicker', function(ev, picker) {
-  $(this).val('');
-});
 
 
 // $('.datefilter').daterangepicker({

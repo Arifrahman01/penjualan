@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Config\Menu;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -21,8 +22,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        $menu = Menu::whereNull('parent_id')->with('children')->orderBy('position')->get();
+        $request->session()->put('menu', $menu);
         return view('home');
     }
 }

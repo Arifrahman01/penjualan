@@ -9,7 +9,7 @@
   <!-- General CSS Files -->
   <link rel="stylesheet" href="{{ asset('assets/modules/bootstrap/css/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/modules/fontawesome/css/all.min.css') }}">
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+  {{-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" /> --}}
 
   <!-- CSS Libraries -->
   @yield('css-libraries')
@@ -98,7 +98,8 @@
         </ul>
       </nav>
       
-      @include('layouts.sidebar')
+      dd(@include('layouts.sidebar'));
+    
 
       <!-- Main Content -->
       <div class="main-content">
@@ -113,6 +114,44 @@
         </section>
       </div>
 
+
+      
+      <!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="section-header">
+            <h1> {{ $title }} </h1>
+          </div>
+
+          <div class="section-body">
+            @yield('content')
+          </div>
+        </section>
+      </div>
+      <!-- Modal Small -->
+      <div class="modal fade" id="modal-sm">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Large Lg-->
+      <div class="modal fade" id="modal-lg">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+          </div>
+        </div>
+      </div>
+      <!-- Modal Large XL -->
+      <div class="modal fade" id="modal-xl">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+
+          </div>
+        </div>
+      </div>
   
       <footer class="main-footer">
         <div class="footer-left">
@@ -130,6 +169,7 @@
 
   <!-- General JS Scripts -->
   <script src="{{ asset('assets/modules/jquery.min.js') }}"></script>
+  <script src="{{ asset('assets/modules/jquery-ui/jquery-ui.min.js') }}"></script>
   <script src="{{ asset('assets/modules/popper.js') }}"></script>
   <script src="{{ asset('assets/modules/tooltip.js') }}"></script>
   <script src="{{ asset('assets/modules/bootstrap/js/bootstrap.min.js') }}"></script>
@@ -137,7 +177,7 @@
   <script src="{{ asset('assets/modules/moment.min.js') }}"></script>
   <script src="{{ asset('assets/js/stisla.js') }}"></script>
   <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+  <script src="{{ asset('assets/js/modal.js') }}"></script>
   <!-- JS Libraries -->
   @yield('js-libraries')
 
